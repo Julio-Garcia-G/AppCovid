@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.appcovidlapiedad.fragments.ListadoFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_listado" />
+
+    <fragment
+        android:id="@+id/nav_donativos"
+        android:name="com.example.appcovidlapiedad.fragments.DonativosFragment"
+        android:label="@string/menu_donativos"
+        tools:layout="@layout/fragment_donativos" />
+
+</navigation>
