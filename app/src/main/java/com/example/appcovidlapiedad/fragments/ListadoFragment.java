@@ -1,7 +1,9 @@
 package com.example.appcovidlapiedad.fragments;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +32,9 @@ public class ListadoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListadoFragment.OnFragmentInteractionListener mListener;
+
     //RECYCLER VIEW Y BASE DE DATOS
     RecyclerView recyclerHospitales;
     ArrayList<Ocupacion_hospitales> listaHospitales;
@@ -81,12 +86,14 @@ public class ListadoFragment extends Fragment {
         return vista;
     }
 
+
     private void consultarHospitales(){
         SQLiteDatabase db = conn.getReadableDatabase();
 
         Ocupacion_hospitales hospital = null;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_OCUPACION_HOSPITALES,null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_OCUPACION_HOSPITALES
+                                      + " ORDER BY "+ Utilidades.CAMPO_PORCENTAJE_OCUPACION +" ASC",null);
 
         while (cursor.moveToNext()){
             hospital = new Ocupacion_hospitales();
@@ -95,5 +102,32 @@ public class ListadoFragment extends Fragment {
 
             listaHospitales.add(hospital);
         }
+    }
+
+    public void setInteractionListener(OnFragmentInteractionListener mListener){
+        this.mListener = mListener;
+    }
+
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 }

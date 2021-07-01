@@ -30,17 +30,17 @@ public class MenuLateralActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMenuLateral.toolbar);
-        binding.appBarMenuLateral.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.appBarMenuLateral.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Hola", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Se establece el id de los elementos del menú lateral para poder navegar
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_donativos)
                 .setDrawerLayout(drawer)

@@ -29,13 +29,16 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     public void insertarDatos(SQLiteDatabase db){
 
-        if(db != null) {
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital Santa María',12)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital de Expecialidades Médicas',40)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Centro Médico de La Piedad S.A.',32)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital General de La Piedad',57)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Sanatorio del Carmen',25)");
-        }
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital A',68)");
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital B',80)");
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Centro Médico C',90)");
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital D',71)");
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Sanatorio E',60)");
 
     }
 }
