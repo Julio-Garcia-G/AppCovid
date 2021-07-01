@@ -3,6 +3,7 @@ package com.example.appcovidlapiedad.adaptaciones;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,10 +26,12 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
         return new HospitalesViewHolder(view);
     }
 
+    //Se coloca el nombre en el TextView y el porcentaje de ocupación en el TextView y la ProgressBar
     @Override
     public void onBindViewHolder(HospitalesViewHolder holder, int position) {
         holder.nombre.setText(listaHospital.get(position).getNombre());
-        holder.porcentaje_ocupacion.setText(listaHospital.get(position).getPorcentaje_ocupacion().toString());
+        holder.porcentaje_ocupacion.setText(listaHospital.get(position).getPorcentaje_ocupacion().toString()+"%");
+        holder.porcentaje.setProgress(Integer.parseInt(listaHospital.get(position).getPorcentaje_ocupacion().toString()));
     }
 
     @Override
@@ -39,11 +42,13 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
     public class HospitalesViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombre,porcentaje_ocupacion;
+        ProgressBar porcentaje;
 
         public HospitalesViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView) itemView.findViewById(R.id.textNombre);
             porcentaje_ocupacion = (TextView) itemView.findViewById(R.id.textPorcentaje);
+            porcentaje = (ProgressBar) itemView.findViewById(R.id.porcentajeOcup);
         }
     }
 }

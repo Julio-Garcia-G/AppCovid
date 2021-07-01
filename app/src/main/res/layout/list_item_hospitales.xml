@@ -4,58 +4,50 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:id="@+id/linearLayout"
-        android:layout_marginBottom="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre:"
-                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textNombre"
-                android:layout_width="wrap_content"
+                android:layout_width="128dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_margin="5dp"
+                android:text="Hospital" />
+
+            <ProgressBar
+                android:id="@+id/porcentajeOcup"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:text="Hospital"
-                android:layout_marginLeft="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Porcentaje:"
-                android:textStyle="bold"/>
+                android:layout_margin="15dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/textPorcentaje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="27" />
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="50dp"
+                android:text="10" />
 
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorPrimary"
             android:layout_below="@+id/idImagen"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="1dp"
+            android:background="@color/colorPrimary" />
 
     </LinearLayout>
 
@@ -66,6 +58,6 @@
         android:src="@drawable/flecha"
         android:layout_alignBottom="@+id/linearLayout"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="10dp"/>
+        />
 
 </RelativeLayout>
