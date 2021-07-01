@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Ocupacion_hospitales implements Serializable {
     private Integer id;
     private String nombre;
-    private Integer porcentaje_ocupacion;
+    private Integer porcentaje_ocupacion;  
 
     public Ocupacion_hospitales(Integer id, String nombre, Integer porcentaje_ocupacion) {
         this.id = id;
