@@ -1,14 +1,8 @@
 package com.example.appcovidlapiedad;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 
-import com.example.appcovidlapiedad.fragments.DonativosFragment;
-import com.example.appcovidlapiedad.fragments.ListadoFragment;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;

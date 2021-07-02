@@ -1,5 +1,6 @@
 package com.example.appcovidlapiedad.adaptaciones;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +9,24 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appcovidlapiedad.DetallesHospital;
 import com.example.appcovidlapiedad.R;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
+import com.example.appcovidlapiedad.tablas.detalles_hospitales;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitalesAdapter.HospitalesViewHolder>
         implements View.OnClickListener {
 
     ArrayList<Ocupacion_hospitales> listaHospital;
+    private List<detalles_hospitales> listaDetalles;
     private View.OnClickListener listener;
 
-    public ListaHospitalesAdapter(ArrayList<Ocupacion_hospitales> listaHospital) {
+    public ListaHospitalesAdapter(ArrayList<Ocupacion_hospitales> listaHospital, List<detalles_hospitales> listaDetalles) {
         this.listaHospital = listaHospital;
+        this.listaDetalles = listaDetalles;
     }
 
     @Override
@@ -38,6 +44,20 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
         holder.nombre.setText(listaHospital.get(position).getNombre());
         holder.porcentaje_ocupacion.setText(listaHospital.get(position).getPorcentaje_ocupacion().toString()+"%");
         holder.porcentaje.setProgress(Integer.parseInt(listaHospital.get(position).getPorcentaje_ocupacion().toString()));
+
+        final detalles_hospitales detalles = listaDetalles.get(position);
+        final Ocupacion_hospitales nombre = listaHospital.get(position);
+
+        //Al dar clic a un elemento del Recycler se muestran los detalles a la siguiente pantalla
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), DetallesHospital.class);
+                intent.putExtra("detallesHospital",detalles);
+                intent.putExtra("nombreHospital",nombre);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

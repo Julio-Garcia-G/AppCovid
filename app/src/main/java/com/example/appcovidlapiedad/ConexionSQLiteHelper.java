@@ -33,7 +33,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
         if(db != null) {
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital Santa María',12)");
-            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital de Expecialidades Médicas',40)");
+            db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital de Especialidades Médicas',40)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Centro Médico de La Piedad S.A.',32)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital General de La Piedad',57)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Sanatorio del Carmen',25)");
@@ -42,6 +42,17 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital San Ángel',69)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Hospital Santa Margarita',86)");
             db.execSQL("INSERT INTO ocupacion_hospitales (nombre,porcentaje_ocupacion) VALUES ('Centro de Salud de Santa Ana',93)");
+
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Vicente Guerrero, Centro, 59300 La Piedad de Cavadas, Mich.','352 522 3108')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Heriberto Jara 53, Peña, 59300 La Piedad de Cavadas, Mich.','352 522 4393')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Benito Juárez, Centro, 59300 La Piedad de Cavadas, Mich.','352 522 1132')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('España 400, Europea, 59350 La Piedad de Cavadas, Mich.','352 521 0263')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Gral. Enrique Ramírez 28, Centro, 59300 La Piedad de Cabadas, Mich.','352 522 7475')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Cipres 63, Palmas, 59380 La Piedad de Cavadas, Mich.','352 526 6930')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Nigromante 607, Las Carmelitas, 59374 La Piedad de Cavadas, Mich.','352 526 8415')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Adolfo López Mateos Ote. 360, Centro, 59300 La Piedad de Cavadas, Mich.','352 522 6060')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Av. Cuatro Milpas 112, Sta Ana Pacueco, 36910 Santa Ana Pacueco, Gto.','352 526 1557')");
+            db.execSQL("INSERT INTO detalles_hospitales (direccion,telefono) VALUES ('Calle Villagrán 95, Sta Ana Pacueco, 36914 Santa Ana Pacueco, Gto.','352 526 3089')");
         }
 
     }

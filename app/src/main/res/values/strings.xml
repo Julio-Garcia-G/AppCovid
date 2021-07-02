@@ -9,6 +9,7 @@
 
     <string name="menu_home">Listado de Hospitales</string>
     <string name="menu_donativos">Donativos</string>
+    <string name="detalles">Detalles del Hospital</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_mapas_navegacion">Map</string>

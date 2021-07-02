@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.appcovidlapiedad.ConexionSQLiteHelper;
+import com.example.appcovidlapiedad.DetallesHospital;
 import com.example.appcovidlapiedad.R;
 import com.example.appcovidlapiedad.adaptaciones.ListaHospitalesAdapter;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
@@ -39,7 +40,7 @@ public class ListadoFragment extends Fragment {
     //RECYCLER VIEW Y BASE DE DATOS
     RecyclerView recyclerHospitales;
     ArrayList<Ocupacion_hospitales> listaHospitales;
-    ArrayList<detalles_hospitales> detalles;
+    ArrayList<detalles_hospitales> listaDetalles;
     ConexionSQLiteHelper conn;
 
     public ListadoFragment() {
@@ -75,27 +76,35 @@ public class ListadoFragment extends Fragment {
         conn = new ConexionSQLiteHelper(getContext());
 
         listaHospitales = new ArrayList<>();
+        listaDetalles = new ArrayList<>();
         recyclerHospitales = (RecyclerView) vista.findViewById(R.id.recyclerHospitales);
         recyclerHospitales.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //Método para consultar los hospitales de la tabla Ocupacion_hospitales
         consultarHospitales();
 
-        //Adapter para el RecyclerView
-        ListaHospitalesAdapter adapter = new ListaHospitalesAdapter(listaHospitales);
+        //Método para consultar los detalles de la tabla detalles_hospitales
+        consultarDetalles();
 
-        adapter.setOnClickListener(new View.OnClickListener() {
+        //Adapter para el RecyclerView
+        ListaHospitalesAdapter adapter = new ListaHospitalesAdapter(listaHospitales, listaDetalles);
+
+
+        /* adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getContext(),
+                        "Teléfono: "+listaDetalles.get(recyclerHospitales.getChildAdapterPosition(v))
+                        .getTelefono()+"\n"+
+                        "Dirección: "+listaDetalles.get(recyclerHospitales.getChildAdapterPosition(v))
+                        .getDireccion(),Toast.LENGTH_SHORT).show();
             }
-        });
+        }); */
 
         recyclerHospitales.setAdapter(adapter);
 
         return vista;
     }
-
 
     private void consultarHospitales(){
         SQLiteDatabase db = conn.getReadableDatabase();
@@ -114,5 +123,20 @@ public class ListadoFragment extends Fragment {
         }
     }
 
+    private void consultarDetalles(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+
+        detalles_hospitales detalles = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_DETALLES_HOSPITALES,null);
+
+        while (cursor.moveToNext()){
+            detalles = new detalles_hospitales();
+            detalles.setDireccion(cursor.getString(1));
+            detalles.setTelefono(cursor.getString(2));
+
+            listaDetalles.add(detalles);
+        }
+    }
 
 }

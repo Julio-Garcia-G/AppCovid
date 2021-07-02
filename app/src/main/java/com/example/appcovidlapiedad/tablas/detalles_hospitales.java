@@ -4,13 +4,17 @@ import java.io.Serializable;
 
 public class detalles_hospitales implements Serializable {
     private Integer id_detalles;
-    private Integer direccion;
-    private Integer telefono;
+    private String direccion;
+    private String telefono;
 
-    public detalles_hospitales(Integer id_detalles, Integer direccion, Integer telefono) {
+    public detalles_hospitales(Integer id_detalles, String direccion, String telefono) {
         this.id_detalles = id_detalles;
         this.direccion = direccion;
         this.telefono = telefono;
+    }
+
+    public detalles_hospitales(){
+
     }
 
     public Integer getId_detalles() {
@@ -21,19 +25,19 @@ public class detalles_hospitales implements Serializable {
         this.id_detalles = id_detalles;
     }
 
-    public Integer getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(Integer direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 }
