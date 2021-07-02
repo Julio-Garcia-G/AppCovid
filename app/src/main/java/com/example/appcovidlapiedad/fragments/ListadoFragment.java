@@ -3,7 +3,6 @@ package com.example.appcovidlapiedad.fragments;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.appcovidlapiedad.ConexionSQLiteHelper;
 import com.example.appcovidlapiedad.R;
 import com.example.appcovidlapiedad.adaptaciones.ListaHospitalesAdapter;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
+import com.example.appcovidlapiedad.tablas.detalles_hospitales;
 import com.example.appcovidlapiedad.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -33,11 +35,11 @@ public class ListadoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private ListadoFragment.OnFragmentInteractionListener mListener;
 
     //RECYCLER VIEW Y BASE DE DATOS
     RecyclerView recyclerHospitales;
     ArrayList<Ocupacion_hospitales> listaHospitales;
+    ArrayList<detalles_hospitales> detalles;
     ConexionSQLiteHelper conn;
 
     public ListadoFragment() {
@@ -76,11 +78,19 @@ public class ListadoFragment extends Fragment {
         recyclerHospitales = (RecyclerView) vista.findViewById(R.id.recyclerHospitales);
         recyclerHospitales.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //Método para consultar lso hospitales de la tabla Ocupacion_hospitales
+        //Método para consultar los hospitales de la tabla Ocupacion_hospitales
         consultarHospitales();
 
         //Adapter para el RecyclerView
         ListaHospitalesAdapter adapter = new ListaHospitalesAdapter(listaHospitales);
+
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         recyclerHospitales.setAdapter(adapter);
 
         return vista;
@@ -104,30 +114,5 @@ public class ListadoFragment extends Fragment {
         }
     }
 
-    public void setInteractionListener(OnFragmentInteractionListener mListener){
-        this.mListener = mListener;
-    }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
 }

@@ -19,7 +19,6 @@ public class Utilidades {
     public static final String CAMPO_TELEFONO="telefono";
 
     public static final String CREAR_TABLA_DETALLES_HOSPITALES="CREATE TABLE "+TABLA_DETALLES_HOSPITALES+
-                        " ("+CAMPO_ID_DETALLES+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_IMAGEN+
-            " BLOB, "+CAMPO_DIRECCION+" TEXT, "+CAMPO_TELEFONO+" INTEGER)";
+                        " ("+CAMPO_ID_DETALLES+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_DIRECCION+" TEXT, "+CAMPO_TELEFONO+" INTEGER)";
 
 }

@@ -13,8 +13,11 @@ import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
 
 import java.util.ArrayList;
 
-public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitalesAdapter.HospitalesViewHolder> {
+public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitalesAdapter.HospitalesViewHolder>
+        implements View.OnClickListener {
+
     ArrayList<Ocupacion_hospitales> listaHospital;
+    private View.OnClickListener listener;
 
     public ListaHospitalesAdapter(ArrayList<Ocupacion_hospitales> listaHospital) {
         this.listaHospital = listaHospital;
@@ -23,6 +26,9 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
     @Override
     public HospitalesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_hospitales,null,false);
+
+        view.setOnClickListener(this);
+
         return new HospitalesViewHolder(view);
     }
 
@@ -37,6 +43,17 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
     @Override
     public int getItemCount() {
         return listaHospital.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null) {
+            listener.onClick(v);
+        }
     }
 
     public class HospitalesViewHolder extends RecyclerView.ViewHolder {
