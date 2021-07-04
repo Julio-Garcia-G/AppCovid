@@ -111,6 +111,7 @@ public class ListadoFragment extends Fragment {
 
         Ocupacion_hospitales hospital = null;
 
+        //Consulta para obtener todos los campos de la tabla ocupacion_hospitales ordenados por el porcentaje de ocupación
         Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_OCUPACION_HOSPITALES
                                       + " ORDER BY "+ Utilidades.CAMPO_PORCENTAJE_OCUPACION +" ASC",null);
 
@@ -128,7 +129,11 @@ public class ListadoFragment extends Fragment {
 
         detalles_hospitales detalles = null;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_DETALLES_HOSPITALES,null);
+        //Consulta para obtener el id, la dirección y el teléfono, ordenados por el porcentaje de ocupación
+        Cursor cursor = db.rawQuery("SELECT id, direccion, telefono " +
+                                        "FROM "+ Utilidades.TABLA_DETALLES_HOSPITALES + " AS dh " +
+                                        "JOIN ocupacion_hospitales AS oh ON (id_hospital = oh.id) " +
+                                        "ORDER BY porcentaje_ocupacion ASC",null);
 
         while (cursor.moveToNext()){
             detalles = new detalles_hospitales();

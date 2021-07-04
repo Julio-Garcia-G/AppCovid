@@ -20,7 +20,7 @@ import java.util.List;
 public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitalesAdapter.HospitalesViewHolder>
         implements View.OnClickListener {
 
-    ArrayList<Ocupacion_hospitales> listaHospital;
+    private ArrayList<Ocupacion_hospitales> listaHospital;
     private List<detalles_hospitales> listaDetalles;
     private View.OnClickListener listener;
 
@@ -48,7 +48,7 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
         final detalles_hospitales detalles = listaDetalles.get(position);
         final Ocupacion_hospitales nombre = listaHospital.get(position);
 
-        //Al dar clic a un elemento del Recycler se muestran los detalles a la siguiente pantalla
+        //Al dar clic a un elemento del Recycler se muestran los detalles del hospital en la siguiente pantalla
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -8,17 +8,21 @@ public class Utilidades {
     public static final String CAMPO_NOMBRE = "nombre";
     public static final String CAMPO_PORCENTAJE_OCUPACION = "porcentaje_ocupacion";
 
+    //Creación de la tabla ocupación_hospitales
     public static final String CREAR_TABLA_OCUPACION_HOSPITALES = "CREATE TABLE "+TABLA_OCUPACION_HOSPITALES+
                         " ("+CAMPO_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_NOMBRE+" TEXT, "+CAMPO_PORCENTAJE_OCUPACION+" INTEGER)";
 
     //Constantes campos tabla detalles_hospitales
     public static final String TABLA_DETALLES_HOSPITALES="detalles_hospitales";
-    public static final String CAMPO_ID_DETALLES="id_detalles";
     public static final String CAMPO_IMAGEN="imagen";
     public static final String CAMPO_DIRECCION="direccion";
     public static final String CAMPO_TELEFONO="telefono";
+    public static final String CAMPO_ID_HOSPITAL="id_hospital";
 
+    //Creación de la tabla detalles_hospitales con llave foránea id_hospital
     public static final String CREAR_TABLA_DETALLES_HOSPITALES="CREATE TABLE "+TABLA_DETALLES_HOSPITALES+
-                        " ("+CAMPO_ID_DETALLES+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_DIRECCION+" TEXT, "+CAMPO_TELEFONO+" TEXT)";
+                        " (id_detalles INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_DIRECCION+" TEXT, "+
+                            CAMPO_TELEFONO+" TEXT, "+CAMPO_ID_HOSPITAL+ " INTEGER,"+
+                        " FOREIGN KEY("+CAMPO_ID_HOSPITAL+") REFERENCES "+TABLA_OCUPACION_HOSPITALES+"(id) )";
 
 }
