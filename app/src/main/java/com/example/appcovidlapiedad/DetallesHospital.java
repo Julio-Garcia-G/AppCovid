@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appcovidlapiedad.fragments.ListadoFragment;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
 import com.example.appcovidlapiedad.tablas.detalles_hospitales;
+import com.example.appcovidlapiedad.tablas.ubicacion_hospitales;
 
 public class DetallesHospital extends AppCompatActivity {
 
     private TextView nombre, telefono, domicilio;
     private detalles_hospitales detalles;
     private Ocupacion_hospitales nombreHospital;
+    private ubicacion_hospitales ubicacionHospital;
     private Button regresar, ubicacion;
 
     @Override
@@ -45,6 +47,8 @@ public class DetallesHospital extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetallesHospital.this,MapsActivity.class);
+                intent.putExtra("ubicacion",ubicacionHospital);
+                intent.putExtra("nombre",nombreHospital);
                 startActivity(intent);
             }
         });
@@ -54,6 +58,7 @@ public class DetallesHospital extends AppCompatActivity {
     private void initValues(){
         detalles = (detalles_hospitales) getIntent().getExtras().getSerializable("detallesHospital");
         nombreHospital = (Ocupacion_hospitales) getIntent().getExtras().getSerializable("nombreHospital");
+        ubicacionHospital = (ubicacion_hospitales) getIntent().getExtras().getSerializable("ubicacionHospital");
 
         telefono.setText(detalles.getTelefono());
         domicilio.setText(detalles.getDireccion());

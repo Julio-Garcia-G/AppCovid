@@ -21,6 +21,7 @@ import com.example.appcovidlapiedad.R;
 import com.example.appcovidlapiedad.adaptaciones.ListaHospitalesAdapter;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
 import com.example.appcovidlapiedad.tablas.detalles_hospitales;
+import com.example.appcovidlapiedad.tablas.ubicacion_hospitales;
 import com.example.appcovidlapiedad.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class ListadoFragment extends Fragment {
     RecyclerView recyclerHospitales;
     ArrayList<Ocupacion_hospitales> listaHospitales;
     ArrayList<detalles_hospitales> listaDetalles;
+    ArrayList<ubicacion_hospitales> listaUbicaciones;
     ConexionSQLiteHelper conn;
 
     public ListadoFragment() {
@@ -77,6 +79,8 @@ public class ListadoFragment extends Fragment {
 
         listaHospitales = new ArrayList<>();
         listaDetalles = new ArrayList<>();
+        listaUbicaciones = new ArrayList<>();
+
         recyclerHospitales = (RecyclerView) vista.findViewById(R.id.recyclerHospitales);
         recyclerHospitales.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -86,8 +90,11 @@ public class ListadoFragment extends Fragment {
         //Método para consultar los detalles de la tabla detalles_hospitales
         consultarDetalles();
 
+        //Método para consultar la latitud y longitud de la tabla ubicacion_hospitales
+        consultarUbicacion();
+
         //Adapter para el RecyclerView
-        ListaHospitalesAdapter adapter = new ListaHospitalesAdapter(listaHospitales, listaDetalles);
+        ListaHospitalesAdapter adapter = new ListaHospitalesAdapter(listaHospitales, listaDetalles, listaUbicaciones);
 
 
         /* adapter.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +137,7 @@ public class ListadoFragment extends Fragment {
         detalles_hospitales detalles = null;
 
         //Consulta para obtener el id, la dirección y el teléfono, ordenados por el porcentaje de ocupación
-        Cursor cursor = db.rawQuery("SELECT id, direccion, telefono " +
+        Cursor cursor = db.rawQuery("SELECT dh.id, direccion, telefono " +
                                         "FROM "+ Utilidades.TABLA_DETALLES_HOSPITALES + " AS dh " +
                                         "JOIN ocupacion_hospitales AS oh ON (id_hospital = oh.id) " +
                                         "ORDER BY porcentaje_ocupacion ASC",null);
@@ -141,6 +148,26 @@ public class ListadoFragment extends Fragment {
             detalles.setTelefono(cursor.getString(2));
 
             listaDetalles.add(detalles);
+        }
+    }
+
+    private void consultarUbicacion(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+
+        ubicacion_hospitales ubicacion = null;
+
+        //Consulta para obtener el id, la latitud y longitud, ordenados por el porcentaje de ocupación
+        Cursor cursor = db.rawQuery("SELECT uh.id, latitud, longitud " +
+                "FROM "+ Utilidades.TABLA_UBICACION_HOSPITALES + " AS uh " +
+                "JOIN ocupacion_hospitales AS oh ON (id_hospital = oh.id) " +
+                "ORDER BY porcentaje_ocupacion ASC",null);
+
+        while (cursor.moveToNext()){
+            ubicacion = new ubicacion_hospitales();
+            ubicacion.setLatitud(cursor.getDouble(1));
+            ubicacion.setLongitud(cursor.getDouble(2));
+
+            listaUbicaciones.add(ubicacion);
         }
     }
 

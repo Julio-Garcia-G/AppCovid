@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
+import com.example.appcovidlapiedad.tablas.ubicacion_hospitales;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,6 +18,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private Ocupacion_hospitales nombreHospital;
+    private ubicacion_hospitales ubicacionHospital;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,30 +47,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng hospital1 = new LatLng(20.3400049,-102.0241944);
-        LatLng hospital2 = new LatLng(20.3460377,-102.0304524);
-        LatLng hospital3 = new LatLng(20.3406483,-102.023254);
-        LatLng hospital4 = new LatLng(20.3196144,-102.0150786);
-        LatLng hospital5 = new LatLng(20.3464839,-102.0313109 );
-        LatLng hospital6 = new LatLng(20.3495772,-102.042286 );
-        LatLng hospital7 = new LatLng(20.3467158,-102.0474589 );
-        LatLng hospital8 = new LatLng(20.3358657,-102.0183494 );
-        LatLng hospital9 = new LatLng(20.3438666,-102.0192997);
-        LatLng hospital10 = new LatLng(20.3570585,-102.0171755);
+        //Se obtienen los valores del hospital seleccionado
+        ubicacionHospital = (ubicacion_hospitales) getIntent().getExtras().getSerializable("ubicacion");
+        nombreHospital = (Ocupacion_hospitales) getIntent().getExtras().getSerializable("nombre");
 
-        mMap.addMarker(new MarkerOptions().position(hospital1).title(""));
-        mMap.addMarker(new MarkerOptions().position(hospital2).title(""));
-        mMap.addMarker(new MarkerOptions().position(hospital3).title("Centro Médico de La Piedad S.A."));
-        mMap.addMarker(new MarkerOptions().position(hospital4).title(""));
-        mMap.addMarker(new MarkerOptions().position(hospital5).title("Sanatorio del Carmen"));
-        mMap.addMarker(new MarkerOptions().position(hospital6).title(""));
-        mMap.addMarker(new MarkerOptions().position(hospital7).title(""));
-        mMap.addMarker(new MarkerOptions().position(hospital8).title("Hospital San Ángel"));
-        mMap.addMarker(new MarkerOptions().position(hospital9).title("Hospital Santa Margarita"));
-        mMap.addMarker(new MarkerOptions().position(hospital10).title(""));
+        //Se posiciona el marcador en la latitud y longitud del hospital seleccionado, el nombre se asigna como título
+        //y el enfoque se coloca en la posición del hospital
+        LatLng hospital = new LatLng(ubicacionHospital.getLatitud(),ubicacionHospital.getLongitud());
+        mMap.addMarker(new MarkerOptions().position(hospital).title(nombreHospital.getNombre()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hospital,18));
 
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hospital1,15));
     }
 }

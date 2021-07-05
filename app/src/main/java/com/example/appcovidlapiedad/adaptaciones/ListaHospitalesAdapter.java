@@ -13,6 +13,7 @@ import com.example.appcovidlapiedad.DetallesHospital;
 import com.example.appcovidlapiedad.R;
 import com.example.appcovidlapiedad.tablas.Ocupacion_hospitales;
 import com.example.appcovidlapiedad.tablas.detalles_hospitales;
+import com.example.appcovidlapiedad.tablas.ubicacion_hospitales;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,15 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
 
     private ArrayList<Ocupacion_hospitales> listaHospital;
     private List<detalles_hospitales> listaDetalles;
+    private List<ubicacion_hospitales> listaUbicaciones;
     private View.OnClickListener listener;
 
-    public ListaHospitalesAdapter(ArrayList<Ocupacion_hospitales> listaHospital, List<detalles_hospitales> listaDetalles) {
+    public ListaHospitalesAdapter(ArrayList<Ocupacion_hospitales> listaHospital,
+                                  List<detalles_hospitales> listaDetalles,
+                                  List<ubicacion_hospitales> listaUbicaciones) {
         this.listaHospital = listaHospital;
         this.listaDetalles = listaDetalles;
+        this.listaUbicaciones = listaUbicaciones;
     }
 
     @Override
@@ -47,6 +52,7 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
 
         final detalles_hospitales detalles = listaDetalles.get(position);
         final Ocupacion_hospitales nombre = listaHospital.get(position);
+        final ubicacion_hospitales ubicacion = listaUbicaciones.get(position);
 
         //Al dar clic a un elemento del Recycler se muestran los detalles del hospital en la siguiente pantalla
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +61,7 @@ public class ListaHospitalesAdapter extends RecyclerView.Adapter<ListaHospitales
                 Intent intent = new Intent(holder.itemView.getContext(), DetallesHospital.class);
                 intent.putExtra("detallesHospital",detalles);
                 intent.putExtra("nombreHospital",nombre);
+                intent.putExtra("ubicacionHospital",ubicacion);
                 holder.itemView.getContext().startActivity(intent);
             }
         });

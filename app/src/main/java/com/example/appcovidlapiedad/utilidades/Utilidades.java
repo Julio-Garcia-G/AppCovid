@@ -21,8 +21,17 @@ public class Utilidades {
 
     //Creación de la tabla detalles_hospitales con llave foránea id_hospital
     public static final String CREAR_TABLA_DETALLES_HOSPITALES="CREATE TABLE "+TABLA_DETALLES_HOSPITALES+
-                        " (id_detalles INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_DIRECCION+" TEXT, "+
+                        " ("+CAMPO_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_DIRECCION+" TEXT, "+
                             CAMPO_TELEFONO+" TEXT, "+CAMPO_ID_HOSPITAL+ " INTEGER,"+
                         " FOREIGN KEY("+CAMPO_ID_HOSPITAL+") REFERENCES "+TABLA_OCUPACION_HOSPITALES+"(id) )";
+
+    public static final String TABLA_UBICACION_HOSPITALES="ubicacion_hospitales";
+    public static final String CAMPO_LATITUD ="latitud";
+    public static final String CAMPO_LONGITUD="longitud";
+
+    public static final String CREAR_TABLA_UBICACION_HOSPITALES="CREATE TABLE "+TABLA_UBICACION_HOSPITALES+
+            " ("+CAMPO_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+CAMPO_LATITUD+" REAL, "+
+                CAMPO_LONGITUD+" REAL, "+CAMPO_ID_HOSPITAL+ " INTEGER,"+
+            " FOREIGN KEY("+CAMPO_ID_HOSPITAL+") REFERENCES "+TABLA_OCUPACION_HOSPITALES+"(id) )";
 
 }
